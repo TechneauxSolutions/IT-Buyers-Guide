@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The SMB IT Buyer's Guide | Techneaux Technology Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --orange: #EC7D25;
+    --orange-dark: #c9661a;
+    --dark: #1a1a1a;
+    --dark-2: #282628;
+    --gray-light: #f4f4f2;
+    --white: #ffffff;
+    --text: #2a2a2a;
+    --text-muted: #555;
+    --border: #e2e0dc;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Open Sans', sans-serif; color: var(--text); background: var(--white); }
+  
+    .chapter { page-break-before: always; }
+    .chapter:first-of-type { page-break-before: avoid; }
+  }
+
+  /* COVER */
+  .cover { background: var(--dark); min-height: 100vh; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .cover::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(236,125,37,0.15) 0%, transparent 70%); pointer-events: none; }
+  .cover-dot-pattern { position: absolute; bottom: 0; left: 0; width: 300px; height: 300px; background-image: radial-gradient(circle, rgba(236,125,37,0.15) 1px, transparent 1px); background-size: 20px 20px; pointer-events: none; }
+  .cover-top-rule { height: 4px; background: var(--orange); }
+  .cover-inner { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 80px calc((100% - 800px) / 2); max-width: 100%; position: relative; z-index: 1; box-sizing: border-box; }
+  .cover-content { max-width: 800px; width: 100%; }
+  .cover-logo { margin-bottom: 2rem; }
+  .cover-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.5rem; }
+  .cover-title { font-family: 'Montserrat', sans-serif; font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; color: var(--white); line-height: 1.0; text-transform: uppercase; margin-bottom: 1.5rem; }
+  .cover-title span { color: var(--orange); }
+  .cover-divider { width: 64px; height: 4px; background: var(--orange); margin-bottom: 2rem; }
+  .cover-subtitle { font-size: 1.25rem; line-height: 1.7; color: rgba(255,255,255,0.65); max-width: 560px; margin-bottom: 3rem; }
+  .cover-meta { display: flex; gap: 3rem; }
+  .cover-meta-item { }
+  .cover-meta-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 0.375rem; }
+  .cover-meta-value { font-size: 0.875rem; font-weight: 600; color: rgba(255,255,255,0.7); }
+  .cover-footer { padding: 2rem 10%; border-top: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
+  .cover-footer img { height: 28px; }
+  .cover-footer-text { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+  /* TOC */
+  .toc { padding: 80px 10%; background: var(--gray-light); }
+  .toc-inner { max-width: 800px; margin: 0 auto; }
+  .toc-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.75rem; }
+  .toc-title { font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 900; color: var(--dark); margin-bottom: 0.5rem; }
+  .toc-divider { width: 48px; height: 3px; background: var(--orange); margin-bottom: 2.5rem; }
+  .toc-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+  .toc-item { display: flex; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-num { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 900; color: var(--orange); letter-spacing: 0.1em; min-width: 2rem; }
+  .toc-item-title { font-size: 1rem; font-weight: 700; color: var(--dark); }
+  .toc-item-desc { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem; }
+  a.toc-item-title { font-size: 1rem; font-weight: 700; color: var(--dark); text-decoration: none; transition: color 0.15s; }
+  a.toc-item-title:hover { color: var(--orange); }
+
+  /* CHAPTER */
+  .chapter { padding: 80px 10%; }
+  .chapter:nth-child(odd) { background: var(--white); }
+  .chapter:nth-child(even) { background: var(--gray-light); }
+  .chapter-inner { max-width: 800px; margin: 0 auto; }
+  .chapter-num { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.5rem; }
+  .chapter-title { font-family: 'Montserrat', sans-serif; font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 900; color: var(--dark); line-height: 1.1; margin-bottom: 0.5rem; }
+  .chapter-title span { color: var(--orange); }
+  .chapter-divider { width: 48px; height: 3px; background: var(--orange); margin-bottom: 1.75rem; }
+  .chapter-intro { font-size: 1.05rem; line-height: 1.85; color: var(--text-muted); margin-bottom: 2.5rem; }
+
+  /* CONTENT ELEMENTS */
+  .body-text { font-size: 0.95rem; line-height: 1.85; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .body-text strong { color: var(--dark); font-weight: 700; }
+  h3.subhead { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--dark); margin-bottom: 0.75rem; margin-top: 2rem; }
+  .callout { background: var(--dark); border-radius: 8px; padding: 1.75rem 2rem; margin: 2rem 0; }
+  .callout-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.5rem; }
+  .callout p { font-size: 0.95rem; line-height: 1.75; color: rgba(255,255,255,0.7); }
+  .callout p strong { color: var(--white); }
+  .tip-box { background: #fff8f3; border: 1px solid #f5d9c0; border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .tip-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.5rem; }
+  .tip-box p { font-size: 0.9rem; line-height: 1.7; color: var(--text); }
+  .checklist-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0; }
+  .checklist-list li { display: flex; align-items: flex-start; gap: 0.875rem; font-size: 0.9rem; line-height: 1.6; color: var(--text-muted); }
+  .checklist-list li::before { content: ''; width: 20px; height: 20px; border: 2px solid var(--orange); border-radius: 4px; flex-shrink: 0; margin-top: 1px; }
+  .numbered-list { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; margin: 1.5rem 0; counter-reset: item; }
+  .numbered-list li { display: flex; gap: 1rem; align-items: flex-start; font-size: 0.9rem; line-height: 1.7; color: var(--text-muted); counter-increment: item; }
+  .numbered-list li::before { content: counter(item); font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 900; color: var(--white); background: var(--orange); min-width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .numbered-list li strong { color: var(--dark); }
+  .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 8px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; }
+  th { background: var(--dark); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.875rem 1rem; text-align: left; }
+  td { padding: 0.875rem 1rem; font-size: 0.875rem; color: var(--text); border-bottom: 1px solid var(--border); line-height: 1.5; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--white); }
+  td { background: var(--white); }
+  .highlight-row td { background: rgba(236,125,37,0.06) !important; font-weight: 700; color: var(--dark); }
+  .red-flag { background: #fff0f0; border-left: 3px solid #E24B4A; border-radius: 0 6px 6px 0; padding: 0.875rem 1.25rem; margin-bottom: 0.75rem; }
+  .red-flag-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #E24B4A; margin-bottom: 0.3rem; }
+  .red-flag p { font-size: 0.875rem; color: var(--text); line-height: 1.6; }
+  .green-check { background: #f0f9ea; border-left: 3px solid #639922; border-radius: 0 6px 6px 0; padding: 0.875rem 1.25rem; margin-bottom: 0.75rem; }
+  .green-check-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #3B6D11; margin-bottom: 0.3rem; }
+  .green-check p { font-size: 0.875rem; color: var(--text); line-height: 1.6; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
+  .stat-card { background: var(--dark); border-radius: 8px; padding: 1.5rem; text-align: center; }
+  .stat-number { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; font-weight: 700; color: var(--orange); line-height: 1; margin-bottom: 0.5rem; }
+  .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.4; }
+
+  /* CTA */
+  .cta-chapter { background: var(--orange); padding: 80px 10%; text-align: center; }
+  .cta-inner { max-width: 700px; margin: 0 auto; }
+  .cta-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 0.75rem; }
+  .cta-title { font-family: 'Montserrat', sans-serif; font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 900; color: var(--white); text-transform: uppercase; line-height: 1.1; margin-bottom: 1rem; }
+  .cta-body { font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.85); margin-bottom: 2rem; }
+  .cta-btn { display: inline-block; background: var(--white); color: var(--orange); padding: 1rem 2.5rem; border-radius: 4px; text-decoration: none; font-weight: 800; font-size: 0.875rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .cta-note { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 0.875rem; }
+
+  /* FOOTER */
+  .guide-footer { background: var(--dark-2); padding: 2rem 10%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-top: 1px solid rgba(255,255,255,0.06); }
+  .guide-footer img { height: 24px; }
+  .guide-footer-text { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+  .guide-footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+  .guide-footer a:hover { color: var(--orange); }
+
+  @media print {
+    @page { margin: 0; size: auto; }
+    .no-print { display: none !important; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .chapter { page-break-before: always; }
+    .chapter:first-of-type { page-break-before: avoid; }
+    a[href]::after { content: none !important; }
+  }
+
+  .options-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 2rem 0; grid-template-rows: auto; align-items: start; }
+  .option-card { background: var(--gray-light); border-radius: 8px; padding: 1.75rem; display: grid; grid-template-rows: subgrid; grid-row: span 4; gap: 0.875rem; }
+  .option-card-featured { border: 2px solid var(--orange); }
+  .option-card-tag { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); }
+  .option-card-title { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--dark); line-height: 1.2; }
+  .option-card-desc { font-size: 0.875rem; line-height: 1.75; color: var(--text-muted); }
+  .option-card-cost { padding-top: 0.875rem; border-top: 1px solid var(--border); }
+  .option-card-cost-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.375rem; }
+  .option-card-cost-value { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--orange); margin-bottom: 0.25rem; }
+  .option-card-cost-sub { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .option-card-best { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .options-grid { grid-template-rows: repeat(4, auto); }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover" style="background:#1a1a1a;">
+  <div class="cover-top-rule"></div>
+  <div class="cover-dot-pattern"></div>
+  <div class="cover-inner">
+    <div class="cover-content">
+    <div class="cover-logo"><?xml version="1.0" encoding="UTF-8"?><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" style="width:325px;height:auto;display:block;"><defs><style>.cls-1{fill:#ec7d25;}.cls-2{fill:#ffffff;}.cls-3{fill:#ffffff;}.cls-4{fill:#ffffff;}</style></defs><g><path class="cls-1" d="M290.68,191.38h-86.86c-1.75,0-3.22,1.46-3.22,3.22v5.36c0,1,.38,1.76,.94,2.27,.52,.57,1.27,.94,2.27,.94h37.53v73.99c0,1.75,1.46,3.22,3.22,3.22h5.36c1.75,0,3.22-1.46,3.22-3.22v-73.99h37.53c1.75,0,3.22-1.46,3.22-3.22v-5.36c0-1.75-1.46-3.22-3.22-3.22Z"/><path class="cls-1" d="M361.99,191.38h-45.06c-8.7,0-15.58,6.51-16.04,15.15-.01,.13-.02,.26-.02,.4v57c0,8.93,6.52,16.45,15.75,16.45h45.37c1.75,0,3.22-1.46,3.22-3.22v-5.36c0-1.75-1.46-3.22-3.22-3.22h-45.5c-3.39,0-3.83-3-3.83-5.6v-21.21h44.5c1.75,0,3.22-1.46,3.22-3.22v-5.36c0-1.75-1.46-3.22-3.22-3.22h-44.5v-16.56c0-2.27-.32-4.79,.03-7.05,.47-3.08,3.27-3.21,5.68-3.21h43.62c1.75,0,3.22-1.46,3.22-3.22v-5.36c0-1.75-1.46-3.22-3.22-3.22Z"/><path class="cls-1" d="M438.67,191.38h-45.06c-8.7,0-15.58,6.51-16.04,15.15-.01,.13-.02,.26-.02,.4v57c0,8.93,6.52,16.45,15.75,16.45h45.37c1.75,0,3.22-1.46,3.22-3.22v-5.36c0-1.75-1.46-3.22-3.22-3.22h-39.99c-3.96,0-9.34,.9-9.34-4.66v-57c0-3.29,2.97-3.75,5.48-3.75h43.84c1.75,0,3.22-1.46,3.22-3.22v-5.36c0-1.75-1.46-3.22-3.22-3.22Z"/><path class="cls-2" d="M869.56,191.38h-5.36c-1.75,0-3.22,1.46-3.22,3.22v70.24c-.18,3.46-3.1,3.75-5.76,3.75h-33.81c-2.08,0-4.72,.42-6.14-1.48-.96-1.29-.75-2.98-.75-4.49v-68.01c0-1.75-1.46-3.22-3.22-3.22h-5.36c-1.75,0-3.22,1.46-3.22,3.22v60.15c0,4.06-.41,8.39,.2,12.43,.94,6.22,5.56,11.08,11.56,12.74,2.32,.64,4.85,.47,7.23,.47h24.11c6.26,0,13.56,.99,19.24-2.12,4.77-2.62,7.71-8.11,7.71-13.47v-70.19c0-1.75-1.46-3.22-3.22-3.22Z"/><path class="cls-1" d="M527.71,191.38h-5.36c-1.75,0-3.22,1.46-3.22,3.22v35.39h-50.4v-35.39c0-1.75-1.46-3.22-3.22-3.22h-5.36c-1.75,0-3.22,1.46-3.22,3.22v82.57c0,1.75,1.46,3.22,3.22,3.22h5.36c1.75,0,3.22-1.46,3.22-3.22v-35.39h50.4v35.39c0,1.75,1.46,3.22,3.22,3.22h5.36c1.75,0,3.22-1.46,3.22-3.22v-82.57c0-1.75-1.46-3.22-3.22-3.22Z"/><path class="cls-2" d="M625.45,191.38h-5.36c-1.75,0-3.22,1.46-3.22,3.22v72.65c-.16,1.92-2.02,1.4-2.74,.24-.23-.37-.46-.73-.69-1.1-1.06-1.7-2.12-3.41-3.19-5.11-3.82-6.13-7.64-12.26-11.46-18.39-8.35-13.4-16.7-26.81-25.05-40.21-2.16-3.47-3.92-7.09-7.41-9.41-5.4-3.58-13.04-1.84-16.97,3.01-2.13,2.62-2.94,5.77-2.94,9.09v71.8c0,1.75,1.46,3.22,3.22,3.22h5.36c1.75,0,3.22-1.46,3.22-3.22v-72.57c0-.43,.1-.69,.39-1.03,.44-.51,1.71-.16,1.45-.58,.19,.31,.39,.62,.58,.93,1.02,1.63,2.04,3.26,3.06,4.89,3.8,6.08,7.6,12.16,11.4,18.24,8.34,13.34,16.67,26.68,25.01,40.02,2.18,3.48,4.38,8.36,7.65,10.75,9.02,6.6,20.91-.54,20.91-11.19v-72.04c0-1.75-1.46-3.22-3.22-3.22Z"/><path class="cls-2" d="M963.24,274.9c-10.87-13.59-21.74-27.17-32.62-40.76,9.98-12.42,19.96-24.84,29.94-37.26,1.68-2.09,.76-5.49-2.27-5.49-3.51,0-7.88-1-10.28,1.99-3.09,3.85-6.18,7.69-9.27,11.54-5.26,6.55-10.52,13.1-15.78,19.64-5.24-6.55-10.48-13.1-15.72-19.64-3.04-3.79-6.07-7.59-9.11-11.38-.94-1.18-1.65-2.14-3.42-2.14h-6.97c-3.04,0-3.95,3.4-2.27,5.49,9.93,12.41,19.87,24.83,29.8,37.24-10.93,13.59-21.86,27.19-32.79,40.78-1.68,2.09-.76,5.49,2.27,5.49h7.12c1.77,0,2.51-1.17,3.46-2.36,3.41-4.24,6.82-8.48,10.23-12.73,5.79-7.2,11.58-14.4,17.37-21.6,5.65,7.07,11.31,14.13,16.96,21.2,3.46,4.32,6.91,8.64,10.37,12.96,.97,1.21,1.75,2.53,3.55,2.53h7.15c3.04,0,3.95-3.4,2.28-5.49Z"/><g><path class="cls-3" d="M38.69,203.9c-1.59-1.9-2.88-5.49-2.88-7.96v-23.41c0-2.48,2.03-4.5,4.5-4.5h45.02c2.48,0,5.8,1.56,7.38,3.46l48.27,57.92c1.59,1.9,.86,3.46-1.62,3.46H67.33c-2.48,0-5.8-1.56-7.38-3.46l-21.25-25.5Z"/><polygon class="cls-4" points="101.51 182.02 68.09 232.86 107.6 189.13 101.51 182.02"/><path class="cls-1" d="M173.19,203.9c1.58-1.9,2.88-5.49,2.88-7.96v-23.41c0-2.48-2.03-4.5-4.5-4.5h-45.02c-2.48,0-5.8,1.56-7.38,3.46l-51.07,61.38h76.47c2.48,0,5.8-1.56,7.38-3.46l21.25-25.5Z"/><path class="cls-3" d="M173.19,268.02c1.59,1.9,2.88,5.48,2.88,7.96v23.41c0,2.48-2.03,4.5-4.5,4.5h-45.02c-2.48,0-5.8-1.55-7.38-3.46l-48.27-57.92c-1.59-1.9-.86-3.46,1.62-3.46h72.04c2.48,0,5.8,1.56,7.38,3.46l21.25,25.5Z"/><polygon class="cls-4" points="110.38 289.9 143.79 239.06 104.28 282.79 110.38 289.9"/><path class="cls-1" d="M38.69,268.02c-1.59,1.9-2.88,5.48-2.88,7.96v23.41c0,2.48,2.03,4.5,4.5,4.5h45.02c2.48,0,5.8-1.55,7.39-3.46l51.07-61.38H67.33c-2.48,0-5.8,1.56-7.38,3.46l-21.25,25.5Z"/></g><path class="cls-2" d="M794.72,275.55c-10.68-23.82-21.36-47.63-32.03-71.45-.58-1.3-1.17-2.6-1.75-3.91-2.48-5.51-7.46-8.62-13.49-8.8-6.21-.19-11.15,3.75-13.65,9.12-1.45,3.13-2.83,6.3-4.24,9.44-6.71,14.96-13.42,29.93-20.13,44.89-2.05,4.58-4.11,9.16-6.16,13.75h-44.71c-3.4,0-3.83-3-3.83-5.6v-21.21h44.5c1.75,0,3.22-1.46,3.22-3.22v-5.36c0-1.75-1.46-3.22-3.22-3.22h-44.5v-16.56c0-2.27-.32-4.79,.03-7.05,.47-3.08,3.27-3.21,5.69-3.21h43.61c1.75,0,3.22-1.46,3.22-3.22v-5.36c0-1.75-1.46-3.22-3.22-3.22h-45.06c-8.7,0-15.58,6.51-16.04,15.15-.01,.13-.02,.26-.02,.4v57c0,8.93,6.52,16.45,15.75,16.45h50.68c1.04,0,2.33-.59,2.78-1.59,10.54-23.5,21.07-47,31.61-70.5,.38-.84,.74-1.68,1.13-2.52,.32-.68,.62-1.74,1.23-2.2,1.3-.96,2.72-.19,3.34,1.05,.11,.23,.21,.46,.31,.7,1.97,4.39,3.93,8.78,5.9,13.16,3.32,7.4,6.63,14.79,9.95,22.19,0,0,0,0,0,0,1.84,4.1-1.82,4.16-1.82,4.16h0c-2.78,0-5.57,.01-8.35,.02-4.86,0-10.92-.05-15.78-.04-1.51,0-2.71-.04-3.81,1.34-1.45,1.82-1.99,3.19-3.14,5.52-1.35,2.72,.2,5.21,2.88,5.2,11.21-.02,22.42-.04,33.63-.07,.14,.04,.29,.07,.47,.07,2.68,0,4.47,2.86,4.47,2.86h0c.66,1.47,1.32,2.94,1.98,4.41,2.19,4.88,4.38,9.76,6.57,14.65,.45,1,1.74,1.59,2.78,1.59h6.45c2.64,0,3.74-2.69,2.78-4.84Z"/></g><g><path class="cls-3" d="M566.77,304.43c0,.3-.1,.55-.29,.75-.2,.2-.44,.29-.75,.29h-6.44v25.15c0,.3-.11,.56-.32,.77s-.47,.32-.77,.32h-2.63c-.3,0-.56-.1-.77-.32-.21-.21-.32-.47-.32-.77v-25.15h-6.44c-.3,0-.57-.1-.79-.29-.23-.2-.34-.44-.34-.75v-2.22c0-.3,.11-.56,.34-.77,.23-.21,.49-.32,.79-.32h17.7c.31,0,.55,.11,.75,.32s.29,.47,.29,.77v2.22Z"/><path class="cls-3" d="M587.24,330.62c0,.3-.11,.56-.34,.77-.23,.21-.49,.32-.8,.32h-14.43c-.3,0-.56-.1-.77-.32-.21-.21-.32-.47-.32-.77v-28.41c0-.3,.11-.56,.32-.77s.47-.32,.77-.32h14.07c.3,0,.56,.11,.77,.32s.32,.47,.32,.77v2.04c0,.3-.1,.57-.29,.79-.2,.23-.46,.34-.8,.34h-10.35v8.08h9.26c.31,0,.57,.1,.8,.3s.34,.45,.34,.76v1.93c0,.34-.11,.61-.34,.83s-.49,.32-.8,.32h-9.26v9.71h10.71c.31,0,.57,.11,.8,.32s.34,.47,.34,.77v2.22Z"/><path class="cls-3" d="M609.43,329.34c.15,.3,.17,.58,.07,.82-.1,.24-.27,.41-.48,.5-.79,.43-1.66,.75-2.61,.98-.95,.23-2.07,.34-3.34,.34-3.75,0-6.68-1.35-8.78-4.04-2.11-2.69-3.16-6.58-3.16-11.66,0-2.36,.29-4.49,.86-6.38,.57-1.89,1.39-3.51,2.45-4.86,1.06-1.35,2.33-2.38,3.81-3.11,1.48-.73,3.15-1.09,4.99-1.09,.88,0,1.81,.08,2.79,.23,.98,.15,1.9,.49,2.74,1,.27,.15,.46,.36,.55,.64s.06,.56-.09,.86l-.95,1.86c-.3,.54-.74,.68-1.32,.41-.51-.24-1.04-.43-1.59-.57-.54-.14-1.13-.2-1.77-.2-1.15,0-2.18,.21-3.09,.64-.91,.42-1.68,1.09-2.32,2-.63,.91-1.13,2.07-1.47,3.49s-.52,3.13-.52,5.13,.18,3.75,.54,5.17c.36,1.42,.87,2.59,1.52,3.49,.65,.91,1.43,1.58,2.34,2s1.91,.64,3,.64c.54,0,1.16-.09,1.84-.27s1.25-.38,1.7-.59c.27-.12,.53-.14,.77-.07,.24,.08,.41,.23,.5,.47l1,2.18Z"/><path class="cls-3" d="M634.12,330.62c0,.3-.1,.56-.32,.77-.21,.21-.47,.32-.77,.32h-2.59c-.3,0-.57-.1-.8-.32-.23-.21-.34-.47-.34-.77v-13.03h-9.76v13.03c0,.3-.11,.56-.32,.77s-.47,.32-.77,.32h-2.63c-.31,0-.56-.1-.77-.32-.21-.21-.32-.47-.32-.77v-28.41c0-.3,.1-.56,.32-.77,.21-.21,.47-.32,.77-.32h2.63c.3,0,.56,.11,.77,.32,.21,.21,.32,.47,.32,.77v11.25h9.76v-11.25c0-.3,.11-.56,.34-.77,.23-.21,.49-.32,.8-.32h2.59c.3,0,.56,.11,.77,.32s.32,.47,.32,.77v28.41Z"/><path class="cls-3" d="M662.26,330.66c0,.27-.11,.52-.34,.73-.23,.21-.49,.32-.8,.32h-4.27c-.58,0-.98-.29-1.22-.86l-7.99-19.02c-.43-.97-.79-2.05-1.09-3.25s-.61-2.37-.91-3.52c.06,.57,.13,1.22,.2,1.93,.08,.71,.14,1.42,.2,2.13,.06,.71,.12,1.38,.16,2,.04,.62,.07,1.14,.07,1.57l.05,17.97c0,.27-.11,.52-.32,.73s-.47,.32-.77,.32h-2.41c-.3,0-.56-.1-.77-.32-.21-.21-.32-.45-.32-.73v-28.5c0-.3,.1-.55,.32-.75,.21-.2,.47-.29,.77-.29h4.27c.3,0,.59,.08,.86,.23,.27,.15,.47,.35,.59,.59l7.67,18.75c.42,1,.78,2.04,1.07,3.13,.29,1.09,.6,2.19,.93,3.31-.12-1.18-.23-2.43-.32-3.74-.09-1.32-.14-2.5-.14-3.56l-.05-17.66c0-.27,.1-.51,.32-.73,.21-.21,.47-.32,.77-.32h2.31c.3,0,.57,.11,.8,.32,.23,.21,.34,.45,.34,.73v28.5Z"/><path class="cls-3" d="M689.41,316.54c0,10.29-3.54,15.43-10.62,15.43-3.54,0-6.21-1.26-8.01-3.79-1.8-2.52-2.7-6.41-2.7-11.64s.9-9.08,2.68-11.73c1.78-2.65,4.46-3.97,8.03-3.97s6.16,1.29,7.94,3.86c1.79,2.57,2.68,6.52,2.68,11.85Zm-4.99-.13c0-1.63-.08-3.16-.23-4.59-.15-1.42-.44-2.66-.86-3.72-.42-1.06-1-1.89-1.72-2.5-.73-.61-1.68-.91-2.86-.91-1.27,0-2.28,.33-3.02,.98-.74,.65-1.3,1.52-1.68,2.61-.38,1.09-.63,2.34-.75,3.74-.12,1.41-.18,2.87-.18,4.38,0,1.91,.09,3.59,.27,5.04,.18,1.45,.49,2.66,.93,3.63,.44,.97,1.02,1.7,1.75,2.18,.72,.49,1.62,.73,2.67,.73,1.12,0,2.04-.27,2.77-.82,.72-.54,1.31-1.32,1.75-2.31,.44-1,.74-2.21,.91-3.63s.25-3.03,.25-4.81Z"/><path class="cls-3" d="M710.83,330.62c0,.3-.11,.56-.32,.77-.21,.21-.47,.32-.77,.32h-13.34c-.3,0-.56-.1-.77-.32-.21-.21-.32-.47-.32-.77v-28.41c0-.3,.1-.56,.32-.77s.47-.32,.77-.32h2.63c.3,0,.56,.11,.77,.32s.32,.47,.32,.77v25.14h9.62c.3,0,.56,.11,.77,.34s.32,.48,.32,.75v2.18Z"/><path class="cls-3" d="M734.52,316.54c0,10.29-3.54,15.43-10.62,15.43-3.54,0-6.21-1.26-8.01-3.79-1.8-2.52-2.7-6.41-2.7-11.64s.9-9.08,2.68-11.73,4.46-3.97,8.03-3.97,6.16,1.29,7.94,3.86c1.79,2.57,2.68,6.52,2.68,11.85Zm-4.99-.13c0-1.63-.08-3.16-.23-4.59-.15-1.42-.44-2.66-.86-3.72-.42-1.06-1-1.89-1.72-2.5-.73-.61-1.68-.91-2.86-.91-1.27,0-2.28,.33-3.02,.98-.74,.65-1.3,1.52-1.68,2.61-.38,1.09-.63,2.34-.75,3.74-.12,1.41-.18,2.87-.18,4.38,0,1.91,.09,3.59,.27,5.04,.18,1.45,.49,2.66,.93,3.63,.44,.97,1.02,1.7,1.75,2.18,.72,.49,1.62,.73,2.67,.73,1.12,0,2.04-.27,2.77-.82,.72-.54,1.31-1.32,1.75-2.31,.44-1,.74-2.21,.91-3.63s.25-3.03,.25-4.81Z"/><path class="cls-3" d="M758.9,328.98c0,.51-.1,.91-.29,1.18-.2,.27-.57,.51-1.11,.73-.88,.34-1.91,.6-3.09,.8-1.18,.2-2.39,.29-3.63,.29-2.15,0-4-.36-5.56-1.07-1.56-.71-2.84-1.74-3.83-3.09-1-1.35-1.74-2.99-2.22-4.93-.49-1.94-.73-4.13-.73-6.58s.28-4.49,.84-6.4c.56-1.91,1.37-3.53,2.43-4.88,1.06-1.35,2.36-2.38,3.9-3.11s3.3-1.09,5.27-1.09c1.36,0,2.66,.16,3.9,.47,1.24,.32,2.36,.73,3.36,1.25,.64,.34,.8,.8,.5,1.41l-.91,1.95c-.12,.24-.3,.43-.54,.55-.24,.12-.5,.1-.77-.05-.79-.39-1.61-.71-2.47-.95-.86-.24-1.88-.36-3.06-.36-2.45,0-4.28,.91-5.49,2.74-1.21,1.83-1.82,4.76-1.82,8.78,0,2.06,.17,3.79,.52,5.2,.35,1.41,.85,2.54,1.5,3.41,.65,.86,1.45,1.49,2.41,1.88,.95,.39,2.03,.59,3.24,.59,1.03,0,2-.14,2.91-.41v-8.94h-3.99c-.3,0-.56-.11-.77-.32s-.32-.47-.32-.77v-2.13c0-.3,.1-.56,.32-.77s.47-.32,.77-.32h7.67c.3,0,.56,.11,.77,.32s.32,.47,.32,.77v13.85Z"/><path class="cls-3" d="M775.92,319.81v10.8c0,.3-.11,.56-.32,.77-.21,.21-.47,.32-.77,.32h-2.59c-.31,0-.57-.1-.8-.32-.23-.21-.34-.47-.34-.77v-10.67l-8.22-17.61c-.15-.34-.17-.62-.04-.86,.12-.24,.39-.36,.81-.36h3.54c.69,0,1.13,.26,1.32,.77l4.08,10.44c.33,.85,.58,1.66,.73,2.45s.29,1.51,.41,2.18c.09-.7,.22-1.42,.39-2.18s.42-1.57,.75-2.45l3.95-10.39c.21-.54,.67-.82,1.36-.82h3.22c.33,0,.57,.12,.7,.34,.14,.23,.11,.54-.07,.93l-8.12,17.43Z"/><path class="cls-3" d="M813.73,322.97c0,1.33-.23,2.55-.68,3.66s-1.11,2.06-1.98,2.84-1.91,1.4-3.15,1.84-2.65,.66-4.22,.66c-1.33,0-2.65-.13-3.97-.39-1.32-.26-2.46-.57-3.43-.93-.31-.12-.51-.31-.61-.57s-.13-.52-.07-.8l.54-2.27c.06-.3,.22-.52,.47-.66s.55-.14,.89-.02c.88,.33,1.82,.64,2.84,.91,1.01,.27,2.09,.41,3.24,.41,1.51,0,2.76-.36,3.72-1.09s1.45-1.8,1.45-3.22c0-.76-.16-1.42-.48-1.98s-.74-1.06-1.27-1.5c-.53-.44-1.13-.82-1.81-1.16-.68-.33-1.37-.66-2.07-1l-1.86-.86c-.7-.33-1.37-.71-2.02-1.13s-1.22-.93-1.72-1.52c-.5-.59-.9-1.29-1.18-2.11s-.43-1.77-.43-2.86c0-1.21,.21-2.32,.64-3.34s1.03-1.9,1.81-2.66c.79-.76,1.76-1.35,2.91-1.77,1.15-.42,2.45-.64,3.9-.64,1.09,0,2.16,.11,3.2,.34,1.04,.23,1.96,.47,2.75,.74,.27,.09,.45,.26,.54,.51,.09,.25,.1,.52,.05,.79l-.5,2.02c-.06,.27-.2,.48-.43,.61-.23,.14-.49,.16-.79,.07-.72-.24-1.44-.46-2.13-.66s-1.56-.29-2.59-.29c-1.48,0-2.6,.35-3.34,1.05s-1.11,1.68-1.11,2.96c0,.61,.12,1.12,.36,1.55,.24,.42,.57,.81,.98,1.16,.41,.35,.88,.66,1.41,.93,.53,.27,1.1,.55,1.7,.82l2.45,1.14c.81,.36,1.59,.78,2.31,1.25s1.36,1.04,1.91,1.7c.55,.67,.98,1.44,1.29,2.32s.48,1.92,.48,3.14Z"/><path class="cls-3" d="M835.65,330.62c0,.3-.11,.56-.34,.77-.23,.21-.49,.32-.8,.32h-14.43c-.31,0-.56-.1-.77-.32-.21-.21-.32-.47-.32-.77v-28.41c0-.3,.1-.56,.32-.77,.21-.21,.47-.32,.77-.32h14.07c.3,0,.56,.11,.77,.32,.21,.21,.32,.47,.32,.77v2.04c0,.3-.1,.57-.29,.79-.2,.23-.46,.34-.79,.34h-10.35v8.08h9.26c.3,0,.57,.1,.8,.3,.23,.2,.34,.45,.34,.76v1.93c0,.34-.11,.61-.34,.83-.23,.21-.49,.32-.8,.32h-9.26v9.71h10.71c.3,0,.57,.11,.8,.32,.23,.21,.34,.47,.34,.77v2.22Z"/><path class="cls-3" d="M861.89,330.3c.15,.42,.18,.76,.09,1.02-.09,.26-.38,.39-.86,.39h-3.32c-.33,0-.61-.06-.84-.18-.23-.12-.4-.38-.52-.77-.51-1.57-1-3.12-1.45-4.65-.45-1.53-1-2.9-1.63-4.11-.51-1-1.16-1.88-1.93-2.66s-1.84-1.16-3.2-1.16h-1.86v12.48c0,.27-.11,.52-.32,.73-.21,.21-.47,.32-.77,.32h-2.63c-.3,0-.56-.1-.77-.32s-.32-.45-.32-.73v-28.46c0-.3,.11-.56,.32-.77,.21-.21,.47-.32,.77-.32h7.99c1.9,0,3.46,.27,4.67,.8,1.21,.53,2.15,1.18,2.84,1.95s1.14,1.61,1.38,2.52c.24,.91,.36,1.74,.36,2.5,0,.91-.13,1.77-.39,2.59-.26,.81-.64,1.56-1.16,2.22-.51,.67-1.16,1.23-1.95,1.68s-1.73,.77-2.81,.95c-.06,.03-.13,.05-.2,.05h-.16c1.09,.24,2.05,.78,2.88,1.61,.83,.83,1.49,1.75,1.98,2.75,.18,.39,.42,.94,.73,1.63,.3,.7,.63,1.48,.98,2.36s.7,1.8,1.07,2.77,.71,1.91,1.05,2.81Zm-6.9-20.79c0-1.09-.36-2.06-1.09-2.91-.72-.84-1.86-1.27-3.4-1.27h-4.13v8.94h3.63c1.57,0,2.8-.43,3.68-1.29s1.32-2.02,1.32-3.47Z"/><path class="cls-3" d="M878.59,330.7c-.09,.3-.27,.55-.52,.73-.26,.18-.54,.27-.84,.27h-3.45c-.3,0-.58-.09-.84-.27-.26-.18-.43-.42-.53-.73l-8.39-28.32c-.09-.33-.05-.63,.11-.88s.42-.39,.75-.39h3.13c.76,0,1.22,.36,1.41,1.09l5.22,20.56c.18,.73,.36,1.63,.55,2.72,.18,1.09,.32,2.16,.41,3.22,.15-1.06,.3-2.13,.46-3.22,.15-1.09,.32-2,.5-2.72l5.22-20.52c.18-.76,.63-1.14,1.36-1.14h2.72c.33,0,.58,.12,.75,.36,.17,.24,.21,.53,.12,.86l-8.13,28.37Z"/><path class="cls-3" d="M896.47,330.62c0,.3-.11,.56-.32,.77s-.47,.32-.77,.32h-2.81c-.31,0-.56-.1-.77-.32-.21-.21-.32-.47-.32-.77v-28.41c0-.3,.1-.56,.32-.77,.21-.21,.47-.32,.77-.32h2.81c.3,0,.56,.11,.77,.32,.21,.21,.32,.47,.32,.77v28.41Z"/><path class="cls-3" d="M920.3,329.34c.15,.3,.17,.58,.07,.82-.1,.24-.27,.41-.48,.5-.79,.43-1.66,.75-2.61,.98-.95,.23-2.07,.34-3.34,.34-3.75,0-6.68-1.35-8.78-4.04-2.11-2.69-3.16-6.58-3.16-11.66,0-2.36,.29-4.49,.86-6.38,.57-1.89,1.39-3.51,2.45-4.86,1.06-1.35,2.33-2.38,3.81-3.11,1.48-.73,3.15-1.09,4.99-1.09,.88,0,1.81,.08,2.79,.23,.98,.15,1.9,.49,2.74,1,.27,.15,.46,.36,.55,.64s.06,.56-.09,.86l-.95,1.86c-.3,.54-.74,.68-1.32,.41-.51-.24-1.04-.43-1.59-.57-.54-.14-1.13-.2-1.77-.2-1.15,0-2.18,.21-3.09,.64-.91,.42-1.68,1.09-2.32,2-.63,.91-1.13,2.07-1.47,3.49-.35,1.42-.52,3.13-.52,5.13s.18,3.75,.54,5.17c.36,1.42,.87,2.59,1.52,3.49,.65,.91,1.43,1.58,2.34,2s1.91,.64,3,.64c.54,0,1.16-.09,1.84-.27s1.25-.38,1.7-.59c.27-.12,.53-.14,.77-.07,.24,.08,.41,.23,.5,.47l1,2.18Z"/><path class="cls-3" d="M942.27,330.62c0,.3-.11,.56-.34,.77-.23,.21-.49,.32-.8,.32h-14.43c-.31,0-.56-.1-.77-.32-.21-.21-.32-.47-.32-.77v-28.41c0-.3,.1-.56,.32-.77,.21-.21,.47-.32,.77-.32h14.07c.3,0,.56,.11,.77,.32,.21,.21,.32,.47,.32,.77v2.04c0,.3-.1,.57-.29,.79-.2,.23-.46,.34-.79,.34h-10.35v8.08h9.26c.3,0,.57,.1,.8,.3,.23,.2,.34,.45,.34,.76v1.93c0,.34-.11,.61-.34,.83-.23,.21-.49,.32-.8,.32h-9.26v9.71h10.71c.3,0,.57,.11,.8,.32,.23,.21,.34,.47,.34,.77v2.22Z"/><path class="cls-3" d="M964.19,322.97c0,1.33-.23,2.55-.68,3.66-.45,1.11-1.11,2.06-1.97,2.84s-1.91,1.4-3.16,1.84c-1.24,.44-2.65,.66-4.22,.66-1.33,0-2.66-.13-3.97-.39-1.32-.26-2.46-.57-3.43-.93-.3-.12-.51-.31-.61-.57-.1-.26-.13-.52-.07-.8l.54-2.27c.06-.3,.22-.52,.48-.66s.55-.14,.88-.02c.88,.33,1.82,.64,2.84,.91,1.01,.27,2.09,.41,3.25,.41,1.51,0,2.75-.36,3.72-1.09,.97-.73,1.45-1.8,1.45-3.22,0-.76-.16-1.42-.48-1.98-.32-.56-.74-1.06-1.27-1.5-.53-.44-1.13-.82-1.81-1.16-.68-.33-1.37-.66-2.07-1l-1.86-.86c-.7-.33-1.37-.71-2.02-1.13-.65-.42-1.22-.93-1.72-1.52-.5-.59-.89-1.29-1.18-2.11-.29-.82-.43-1.77-.43-2.86,0-1.21,.21-2.32,.63-3.34s1.03-1.9,1.82-2.66c.79-.76,1.76-1.35,2.91-1.77s2.45-.64,3.9-.64c1.09,0,2.16,.11,3.2,.34,1.05,.23,1.96,.47,2.75,.74,.27,.09,.45,.26,.54,.51s.11,.52,.05,.79l-.5,2.02c-.06,.27-.2,.48-.43,.61-.23,.14-.49,.16-.79,.07-.73-.24-1.44-.46-2.13-.66s-1.56-.29-2.59-.29c-1.48,0-2.59,.35-3.33,1.05-.74,.7-1.11,1.68-1.11,2.96,0,.61,.12,1.12,.36,1.55,.24,.42,.57,.81,.98,1.16s.88,.66,1.41,.93c.53,.27,1.09,.55,1.7,.82l2.45,1.14c.82,.36,1.59,.78,2.31,1.25,.73,.47,1.36,1.04,1.91,1.7,.54,.67,.98,1.44,1.29,2.32,.32,.88,.48,1.92,.48,3.14Z"/></g></svg></div>
+    <div class="cover-title">The SMB<br /><span>IT Buyer's</span><br />Guide</div>
+    <div class="cover-divider"></div>
+    <p class="cover-subtitle">Everything you need to know before signing with an IT provider. How to evaluate, budget for, and buy IT services without getting taken advantage of. Written for business owners, not IT people.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Audience</div>
+        <div class="cover-meta-value">Business owners & decision makers</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Reading Time</div>
+        <div class="cover-meta-value">15 minutes</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">Chapters</div>
+        <div class="cover-meta-value">6 sections</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <div class="toc-inner">
+    <div class="toc-label">What's Inside</div>
+    <div class="toc-title">Table of Contents</div>
+    <div class="toc-divider"></div>
+    <ul class="toc-list">
+      <li class="toc-item">
+        <span class="toc-num">01</span>
+        <div>
+          <a href="#chapter-1" class="toc-item-title">Why Most SMBs Overpay for IT</a>
+          <div class="toc-item-desc">The hidden costs, common traps, and why the cheapest option rarely stays cheap</div>
+        </div>
+      </li>
+      <li class="toc-item">
+        <span class="toc-num">02</span>
+        <div>
+          <a href="#chapter-2" class="toc-item-title">Understanding Your Options</a>
+          <div class="toc-item-desc">In-house IT, break/fix, managed services, what each model actually means for your business</div>
+        </div>
+      </li>
+      <li class="toc-item">
+        <span class="toc-num">03</span>
+        <div>
+          <a href="#chapter-3" class="toc-item-title">How Managed IT is Priced</a>
+          <div class="toc-item-desc">Per-user, block time, T&amp;M, and project-based, what's included, what's extra, and what to watch for</div>
+        </div>
+      </li>
+      <li class="toc-item">
+        <span class="toc-num">04</span>
+        <div>
+          <a href="#chapter-4" class="toc-item-title">How to Evaluate a Vendor</a>
+          <div class="toc-item-desc">The 10 questions that reveal everything about how an IT provider actually operates</div>
+        </div>
+      </li>
+      <li class="toc-item">
+        <span class="toc-num">05</span>
+        <div>
+          <a href="#chapter-5" class="toc-item-title">Red Flags to Watch For</a>
+          <div class="toc-item-desc">Contract terms, pricing structures, and behaviors that should give you pause</div>
+        </div>
+      </li>
+      <li class="toc-item">
+        <span class="toc-num">06</span>
+        <div>
+          <a href="#chapter-6" class="toc-item-title">Building Your IT Budget</a>
+          <div class="toc-item-desc">A practical framework for planning and budgeting for technology, written for business owners without an IT background</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- CHAPTER 1 -->
+<div class="chapter" id="chapter-1">
+  <div class="chapter-inner">
+    <div class="chapter-num">Chapter 01</div>
+    <div class="chapter-title">Why Most SMBs <span>Overpay</span> for IT</div>
+    <div class="chapter-divider"></div>
+    <p class="chapter-intro">Most business owners don't have an IT background. That's completely normal. It's exactly what some IT vendors count on. Understanding a few basic concepts will save you thousands of dollars and a lot of frustration.</p>
+
+    <p class="body-text">The average small business spends between 4% and 6% of its annual revenue on technology, but a significant portion of that spend goes to waste. Not because technology is expensive, but because of how IT services are purchased and managed.</p>
+
+    <p class="body-text">The three most common ways businesses overpay for IT:</p>
+
+    <div style="display:flex;flex-direction:column;gap:1.5rem;margin:2rem 0;">
+
+      <div style="display:grid;grid-template-columns:4rem 1fr;gap:1.5rem;align-items:flex-start;padding:1.75rem 0;border-top:1px solid var(--border);">
+        <div style="font-family:'Montserrat',sans-serif;font-size:2.5rem;font-weight:900;color:var(--orange);line-height:1;">01</div>
+        <div>
+          <h3 style="font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:0.625rem;">The Break/Fix Trap</h3>
+          <p style="font-size:0.9rem;line-height:1.75;color:var(--text-muted);margin-bottom:0.875rem;">Break/fix IT is exactly what it sounds like: you call when something breaks, they come fix it, you pay by the hour. On the surface it seems cost-effective. In practice, it creates a misaligned incentive since <strong style="color:var(--dark);">your IT vendor only makes money when your systems fail.</strong> There's no financial reason for them to prevent problems.</p>
+          <div style="background:var(--dark);border-radius:6px;padding:1rem 1.25rem;">
+            <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:0.375rem;">Think About It</div>
+            <p style="font-size:0.85rem;line-height:1.65;color:rgba(255,255,255,0.65);margin:0;">Under a managed agreement your IT partner loses money every time something breaks, because they fix it at their own cost. Under break/fix they make money every time something breaks. The incentive structures are opposite.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:4rem 1fr;gap:1.5rem;align-items:flex-start;padding:1.75rem 0;border-top:1px solid var(--border);">
+        <div style="font-family:'Montserrat',sans-serif;font-size:2.5rem;font-weight:900;color:var(--orange);line-height:1;">02</div>
+        <div>
+          <h3 style="font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:0.625rem;">Hidden Costs in Low-Priced Agreements</h3>
+          <p style="font-size:0.9rem;line-height:1.75;color:var(--text-muted);margin-bottom:0.875rem;">A managed IT agreement that looks inexpensive on paper often excludes the services you'll actually need most. Common exclusions include on-site visits, hardware procurement, after-hours support, and project work. Always ask specifically about each. The "affordable" option often costs more than a comprehensive agreement would have.</p>
+          <div style="background:#fff8f3;border:1px solid #f5d9c0;border-radius:6px;padding:1rem 1.25rem;">
+            <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:0.375rem;">What to Ask</div>
+            <p style="font-size:0.85rem;line-height:1.65;color:var(--text);margin:0;">Always ask for a complete list of what is and isn't included in the monthly fee. Request a sample invoice to see what actually gets billed separately.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:4rem 1fr;gap:1.5rem;align-items:flex-start;padding:1.75rem 0;border-top:1px solid var(--border);">
+        <div style="font-family:'Montserrat',sans-serif;font-size:2.5rem;font-weight:900;color:var(--orange);line-height:1;">03</div>
+        <div>
+          <h3 style="font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:0.625rem;">Paying for Expertise You're Not Getting</h3>
+          <p style="font-size:0.9rem;line-height:1.75;color:var(--text-muted);margin:0;">Many IT firms employ generalists who are competent across common issues but lack deep expertise in specialized areas like cybersecurity, business intelligence, or process automation. When a complex problem arises, they either outsource it (and mark it up) or attempt a fix that creates new problems. Make sure the team you're hiring actually has the expertise they claim.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-number">60%</div>
+        <div class="stat-label">of SMBs that suffer a cyberattack close within 6 months</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">$8,000</div>
+        <div class="stat-label">average cost per hour of IT downtime for businesses with 50–100 employees</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">88%</div>
+        <div class="stat-label">of SMB breaches contain ransomware, vs. 39% for large enterprises</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 2 -->
+<div class="chapter" id="chapter-2">
+  <div class="chapter-inner">
+    <div class="chapter-num">Chapter 02</div>
+    <div class="chapter-title">Understanding <span>Your Options</span></div>
+    <div class="chapter-divider"></div>
+    <p class="chapter-intro">There are three primary models for IT support. Each has a legitimate use case. The right choice depends on the size, complexity, and risk tolerance of your business.</p>
+
+    <div class="options-grid">
+
+      <div class="option-card">
+        <div class="option-card-tag">Option 01</div>
+        <h3 class="option-card-title">In-House IT Staff</h3>
+        <p class="option-card-desc">Dedicated on-site expertise. For larger organizations with complex environments and dedicated IT staff this makes sense. For most SMBs, it's expensive and creates a single point of failure.</p>
+        <div class="option-card-cost">
+          <div class="option-card-cost-label">True Annual Cost</div>
+          <div class="option-card-cost-value">~$100K</div>
+          <div class="option-card-cost-sub">$65K salary + 30% benefits + $5K recruiting + $3K tools</div>
+          <div class="option-card-best">Best for: Large orgs (250+)</div>
+        </div>
+      </div>
+
+      <div class="option-card">
+        <div class="option-card-tag">Option 02</div>
+        <h3 class="option-card-title">Break/Fix Support</h3>
+        <p class="option-card-desc">You call when something breaks. They fix it. You pay hourly. No ongoing relationship, no proactive monitoring, no accountability. The vendor only makes money when your systems fail.</p>
+        <div class="option-card-cost">
+          <div class="option-card-cost-label">Monthly Cost</div>
+          <div class="option-card-cost-value">Unpredictable</div>
+          <div class="option-card-cost-sub">billed per incident, no ceiling</div>
+          <div class="option-card-best">Best for: 1-10 employees</div>
+        </div>
+      </div>
+
+      <div class="option-card option-card-featured">
+        <div class="option-card-tag">Option 03</div>
+        <h3 class="option-card-title">Managed IT Services</h3>
+        <p class="option-card-desc">A fixed monthly fee for proactive monitoring, help desk support, and maintenance. Your tech partner's incentive is aligned with keeping your systems running, not billing you for repairs.</p>
+        <div class="option-card-cost">
+          <div class="option-card-cost-label">Monthly Cost</div>
+          <div class="option-card-cost-value">Predictable</div>
+          <div class="option-card-cost-sub">fixed per-user fee, no surprises</div>
+          <div class="option-card-best">Best for: Most SMBs</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="background:#fff8f3;border:1px solid #f5d9c0;border-left:4px solid var(--orange);border-radius:6px;padding:1.25rem 1.5rem;margin:2rem 0;">
+      <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:0.5rem;">A Note on Pay-As-You-Go</div>
+      <p style="font-size:0.9rem;line-height:1.75;color:var(--text);margin:0;">Pay-as-you-go clients typically receive lower priority response times than clients on managed agreements. When something goes wrong, IT providers will address their managed clients first. If your business depends on fast resolution, a per-user managed agreement is the better choice.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th>In-House</th>
+            <th>Break/Fix</th>
+            <th>Managed IT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monthly cost</td>
+            <td>High</td>
+            <td>Variable</td>
+            <td>Fixed Fee</td>
+          </tr>
+          <tr>
+            <td>Proactive monitoring</td>
+            <td>Depends on staff</td>
+            <td>None</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>24/7 availability</td>
+            <td>Rarely</td>
+            <td>Extra cost</td>
+            <td>Typically included</td>
+          </tr>
+          <tr>
+            <td>Expertise</td>
+            <td>Limited to staff skills</td>
+            <td>No guarantee</td>
+            <td>Team of specialists</td>
+          </tr>
+          <tr>
+            <td>Scalability</td>
+            <td>Difficult</td>
+            <td>Easy but costly</td>
+            <td>Easy</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>Best for</td>
+            <td>Large orgs (250+)</td>
+            <td>1-10 employees</td>
+            <td>Most SMBs</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 3 -->
+<div class="chapter" id="chapter-3">
+  <div class="chapter-inner">
+    <div class="chapter-num">Chapter 03</div>
+    <div class="chapter-title">How Managed IT <span>Is Priced</span></div>
+    <div class="chapter-divider"></div>
+    <p class="chapter-intro">Pricing varies significantly between managed IT providers, not just in amount, but in structure. Understanding how you're being billed protects you from surprises and helps you compare providers fairly.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0;">
+      <div style="background:var(--gray-light);border-radius:8px;padding:1.5rem;border-top:3px solid var(--orange);">
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:0.5rem;">Most Common</div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:0.75rem;">Per-User Pricing</div>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-muted);margin-bottom:0.75rem;">A fixed monthly fee per employee. Typically includes unlimited helpdesk, proactive monitoring, and maintenance for each user's devices and software.</p>
+        <p style="font-size:0.8rem;line-height:1.6;color:var(--text-muted);"><strong style="color:var(--dark);">Ask:</strong> Does the fee include on-site visits? What is the after-hours policy and rate? Get inclusions and exclusions in writing.</p>
+      </div>
+      <div style="background:var(--gray-light);border-radius:8px;padding:1.5rem;border-top:3px solid var(--orange);">
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:0.5rem;">Flexible Option</div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:0.75rem;">Block Time</div>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-muted);margin-bottom:0.75rem;">Prepaid hours each month at a discounted rate. Hours may or may not roll over, ask specifically.</p>
+        <p style="font-size:0.8rem;line-height:1.6;color:var(--text-muted);"><strong style="color:var(--dark);">Best for:</strong> Businesses with some in-house IT capacity that need supplemental support without full managed services overhead.</p>
+      </div>
+      <div style="background:var(--gray-light);border-radius:8px;padding:1.5rem;border-top:3px solid var(--orange);">
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:0.5rem;">Pay As You Go</div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:0.75rem;">Time &amp; Materials (T&amp;M)</div>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-muted);margin-bottom:0.75rem;">You pay only for what you use, billed hourly. No monthly commitment.</p>
+        <p style="font-size:0.8rem;line-height:1.6;color:var(--text-muted);"><strong style="color:var(--dark);">Best for:</strong> Businesses with minimal IT needs or strong in-house capabilities that only need occasional outside help.</p>
+      </div>
+      <div style="background:var(--gray-light);border-radius:8px;padding:1.5rem;border-top:3px solid var(--orange);">
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:0.5rem;">Defined Scope</div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:0.75rem;">Project-Based</div>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-muted);margin-bottom:0.75rem;">A fixed price for a defined scope of work: a server migration, a new office setup, a system implementation.</p>
+        <p style="font-size:0.8rem;line-height:1.6;color:var(--text-muted);"><strong style="color:var(--dark);">Payment:</strong> Can be paid upfront or spread across the project timeline, depending on the agreement.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">The Right Model for You</div>
+      <p>For most small and mid-sized businesses, per-user pricing is the right choice. You pay one predictable monthly fee per user and everything is covered. No surprise invoices, no hourly billing when something breaks.</p>
+      <p style="margin-top:0.75rem;">The goal is an agreement where you never have to think twice about picking up the phone because you're worried about the bill.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 4 -->
+<div class="chapter" id="chapter-4">
+  <div class="chapter-inner">
+    <div class="chapter-num">Chapter 04</div>
+    <div class="chapter-title">How to <span>Evaluate a Vendor</span></div>
+    <div class="chapter-divider"></div>
+    <p class="chapter-intro">Every IT vendor will tell you they're responsive, reliable, and experienced. Here are the 10 questions that cut through the sales pitch and reveal how they actually operate.</p>
+
+    <ul class="numbered-list">
+      <li><div><strong>How many clients have you lost in the last 12 months, and why did they leave?</strong><br />A vendor with strong retention knows exactly why clients leave and is willing to say so. That level of self-awareness is a good sign.</div></li>
+      <li><div><strong>What do you handle in-house versus what gets outsourced, and who are those partners?</strong><br />If your tickets are being routed to a third party you don't know about, that affects response times, accountability, and data security.</div></li>
+      <li><div><strong>What's included in the monthly fee, and what gets billed separately?</strong><br />The single most important contract question. Ask for a written list of inclusions and exclusions. Then ask for a sample invoice to see what actually appears as a line item.</div></li>
+      <li><div><strong>What does your onboarding process look like for a new client?</strong><br />Proven onboarding systems give you a clear picture of scope, timeline, and expectations before work begins. A vendor who can walk you through the process step by step has done this enough times to get it right.</div></li>
+      <li><div><strong>What's your process for communicating with clients during an active incident?</strong><br />How often do they update you, through what channel, and who owns that communication? Radio silence during a crisis is one of the most common complaints about IT vendors.</div></li>
+      <li><div><strong>What's your policy when a security incident happens at midnight on a Saturday?</strong><br />Gets specific about after-hours response beyond "we're available 24/7." Ask who gets called, what the escalation path looks like, and what your SLA is for critical incidents outside business hours.</div></li>
+      <li><div><strong>Walk me through the last major outage one of your clients experienced.</strong><br />Good vendors own the timeline, explain what went wrong, and describe exactly what changed in their process afterward.</div></li>
+      <li><div><strong>What does your escalation process look like when a tier-1 technician can't solve the problem?</strong><br />Tests depth of team. You want a clear answer: who gets called next, how fast, and what happens if that person can't solve it either.</div></li>
+      <li><div><strong>What happens if the technician who knows our environment best leaves your company?</strong><br />Single points of failure exist inside IT firms too. Ask how they document client environments and how knowledge transfers if someone leaves the company.</div></li>
+      <li><div><strong>What would make you fire a client?</strong><br />A good IT partner protects both sides of the relationship. They won't take on work that burns their team or sets a client up to be underserved.</div></li>
+    </ul>
+  </div>
+</div>
+
+<!-- CHAPTER 5 -->
+<div class="chapter" id="chapter-5">
+  <div class="chapter-inner">
+    <div class="chapter-num">Chapter 05</div>
+    <div class="chapter-title">Red Flags to <span>Watch For</span></div>
+    <div class="chapter-divider"></div>
+    <p class="chapter-intro">Some warning signs are obvious. Others are buried in contracts or revealed only in how a vendor responds to direct questions. Here's what to watch for before you sign.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:2rem 0;">
+
+      <div>
+        <h3 class="subhead" style="margin-top:0;">Walk Away If...</h3>
+        <div style="display:flex;flex-direction:column;gap:0.875rem;">
+
+          <div style="display:flex;align-items:flex-start;gap:0.875rem;">
+            <div style="width:24px;height:24px;flex-shrink:0;margin-top:0.1rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:700;color:var(--dark);margin-bottom:0.25rem;">They own your passwords, licenses, or domain</p>
+              <p style="font-size:0.85rem;line-height:1.65;color:var(--text-muted);">All credentials, licenses, and domain registrations should be in your name. Your vendor is a steward of your assets, not the owner.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:0.875rem;">
+            <div style="width:24px;height:24px;flex-shrink:0;margin-top:0.1rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:700;color:var(--dark);margin-bottom:0.25rem;">No transparency on subcontracting</p>
+              <p style="font-size:0.85rem;line-height:1.65;color:var(--text-muted);">Ask whether your support will be handled by their employees or contractors, and whether any work will be sent offshore.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:0.875rem;">
+            <div style="width:24px;height:24px;flex-shrink:0;margin-top:0.1rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:700;color:var(--dark);margin-bottom:0.25rem;">Insufficient cybersecurity capabilities</p>
+              <p style="font-size:0.85rem;line-height:1.65;color:var(--text-muted);">Cybersecurity is a separate discipline from IT support. A vendor with no cybersecurity capabilities is not fully equipped to support a modern business.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:0.875rem;">
+            <div style="width:24px;height:24px;flex-shrink:0;margin-top:0.1rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:700;color:var(--dark);margin-bottom:0.25rem;">No SLAs or performance tracking</p>
+              <p style="font-size:0.85rem;line-height:1.65;color:var(--text-muted);">If a vendor can't tell you their average response time or show you how they measure their own performance, there's no accountability. You should be able to see the numbers.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:0.875rem;">
+            <div style="width:24px;height:24px;flex-shrink:0;margin-top:0.1rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:700;color:var(--dark);margin-bottom:0.25rem;">They promise everything without asking questions</p>
+              <p style="font-size:0.85rem;line-height:1.65;color:var(--text-muted);">A vendor who says yes to everything in the first meeting hasn't listened to anything. Good IT partners ask more than they answer early on.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:0.875rem;">
+            <div style="width:24px;height:24px;flex-shrink:0;margin-top:0.1rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:700;color:var(--dark);margin-bottom:0.25rem;">No clear offboarding process</p>
+              <p style="font-size:0.85rem;line-height:1.65;color:var(--text-muted);">The right partner arms you with documentation, credentials, and everything you need to be set up for success, even if you decide to go somewhere else.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div>
+        <h3 class="subhead" style="margin-top:0;">Good Signs to Look For</h3>
+        <div style="display:flex;flex-direction:column;gap:0.875rem;">
+
+          <div style="display:flex;align-items:flex-start;gap:0.875rem;">
+            <div style="width:24px;height:24px;flex-shrink:0;margin-top:0.1rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#EC7D25" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:700;color:var(--dark);margin-bottom:0.25rem;">They ask more than they pitch</p>
+              <p style="font-size:0.85rem;line-height:1.65;color:var(--text-muted);">In the first meeting they ask more questions about your business than they talk about their services.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:0.875rem;">
+            <div style="width:24px;height:24px;flex-shrink:0;margin-top:0.1rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#EC7D25" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:700;color:var(--dark);margin-bottom:0.25rem;">They're honest about their limits</p>
+              <p style="font-size:0.85rem;line-height:1.65;color:var(--text-muted);">They proactively point out things they can't do and refer you elsewhere for those needs.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:0.875rem;">
+            <div style="width:24px;height:24px;flex-shrink:0;margin-top:0.1rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#EC7D25" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:700;color:var(--dark);margin-bottom:0.25rem;">You get a knowledge base, not just a helpdesk number</p>
+              <p style="font-size:0.85rem;line-height:1.65;color:var(--text-muted);">Training guides and self-service resources mean your team can solve common problems on their own to reduce tickets and minimize downtime.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:0.875rem;">
+            <div style="width:24px;height:24px;flex-shrink:0;margin-top:0.1rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#EC7D25" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:700;color:var(--dark);margin-bottom:0.25rem;">They can name clients in your industry</p>
+              <p style="font-size:0.85rem;line-height:1.65;color:var(--text-muted);">Relevant experience matters. A vendor who has worked with businesses like yours already understands your workflows, risks, and needs.</p>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:0.875rem;">
+            <div style="width:24px;height:24px;flex-shrink:0;margin-top:0.1rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#EC7D25" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:700;color:var(--dark);margin-bottom:0.25rem;">Flexible pricing, no pressure</p>
+              <p style="font-size:0.85rem;line-height:1.65;color:var(--text-muted);">They help you choose the right pricing structure for your situation, not the most expensive one.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 6 -->
+<div class="chapter" id="chapter-6">
+  <div class="chapter-inner">
+    <div class="chapter-num">Chapter 06</div>
+    <div class="chapter-title">Building Your <span>IT Budget</span></div>
+    <div class="chapter-divider"></div>
+    <p class="chapter-intro">Most business owners either underspend on IT (and pay for it in downtime and security incidents) or overspend without a clear picture of where the money goes. A simple annual IT budget helps with both.</p>
+
+    <h3 class="subhead">The Five Budget Categories</h3>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:1.5rem 0 2.5rem;align-items:start;">
+
+      <div>
+        <div style="display:grid;grid-template-columns:1fr auto;gap:1rem;padding:0.5rem 0;margin-bottom:0.375rem;">
+          <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);">Category</div>
+          <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);">% of Budget</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0.875rem 0;background:transparent;border-radius:0;gap:1rem;border-bottom:1px solid var(--border);">
+            <div>
+              <div style="font-size:0.875rem;font-weight:700;color:var(--dark);">Managed IT / Support</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);margin-top:0.15rem;">Helpdesk, monitoring, maintenance</div>
+            </div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:700;color:var(--orange);white-space:nowrap;">30–40%</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0.875rem 0;background:transparent;border-radius:0;gap:1rem;border-bottom:1px solid var(--border);">
+            <div>
+              <div style="font-size:0.875rem;font-weight:700;color:var(--dark);">Cybersecurity</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);margin-top:0.15rem;">Separate from IT support — EDR, email security, backup, compliance</div>
+            </div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:700;color:var(--orange);white-space:nowrap;">20–30%</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0.875rem 0;background:transparent;border-radius:0;gap:1rem;border-bottom:1px solid var(--border);">
+            <div>
+              <div style="font-size:0.875rem;font-weight:700;color:var(--dark);">Hardware Refresh</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);margin-top:0.15rem;">Workstations, servers, networking</div>
+            </div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:700;color:var(--orange);white-space:nowrap;">15–20%</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0.875rem 0;background:transparent;border-radius:0;gap:1rem;border-bottom:1px solid var(--border);">
+            <div>
+              <div style="font-size:0.875rem;font-weight:700;color:var(--dark);">Software & Licensing</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);margin-top:0.15rem;">Microsoft 365, SaaS tools</div>
+            </div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:700;color:var(--orange);white-space:nowrap;">15–20%</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0.875rem 0;background:transparent;border-radius:0;gap:1rem;border-bottom:1px solid var(--border);">
+            <div>
+              <div style="font-size:0.875rem;font-weight:700;color:var(--dark);">Projects & Improvements</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);margin-top:0.15rem;">Migrations, new systems, upgrades</div>
+            </div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:700;color:var(--orange);white-space:nowrap;">10–15%</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding-left:2rem;border-left:2px solid var(--border);">
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);padding:0.5rem 0;margin-bottom:0.375rem;">Hardware Refresh Cycles</div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0.875rem 0;background:transparent;border-radius:0;gap:1rem;border-bottom:1px solid var(--border);">
+            <div>
+              <div style="font-size:0.875rem;font-weight:700;color:var(--dark);">Workstations</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);margin-top:0.15rem;">Laptops and desktops</div>
+            </div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:700;color:var(--orange);white-space:nowrap;">4–5 yrs</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0.875rem 0;background:transparent;border-radius:0;gap:1rem;border-bottom:1px solid var(--border);">
+            <div>
+              <div style="font-size:0.875rem;font-weight:700;color:var(--dark);">Servers</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);margin-top:0.15rem;">Physical and virtual</div>
+            </div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:700;color:var(--orange);white-space:nowrap;">5–7 yrs</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0.875rem 0;background:transparent;border-radius:0;gap:1rem;border-bottom:1px solid var(--border);">
+            <div>
+              <div style="font-size:0.875rem;font-weight:700;color:var(--dark);">Network Equipment</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);margin-top:0.15rem;">Switches, routers, firewalls</div>
+            </div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:700;color:var(--orange);white-space:nowrap;">5–8 yrs</div>
+          </div>
+        </div>
+        <p style="font-size:0.8rem;line-height:1.65;color:var(--text-muted);margin-top:1rem;">Waiting until hardware fails is always more expensive than planned replacement.</p>
+      </div>
+
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-label">Practical Tip</div>
+      <p>Ask your IT provider for a hardware inventory with purchase dates and expected end-of-life dates. A good managed IT partner maintains this automatically and builds replacement recommendations into your annual budget planning.</p>
+    </div>
+
+    <h3 class="subhead">Annual Budget Checklist</h3>
+    <ul class="checklist-list">
+      <li>Establish a hardware inventory with purchase dates and planned replacement years</li>
+      <li>Budget 15–20% of IT spend annually for planned hardware refresh</li>
+      <li>Budget for cybersecurity separately from your IT support agreement. It is a distinct service with its own costs.</li>
+      <li>Set aside a project reserve (10–15%) for unplanned but necessary upgrades</li>
+      <li>Review your IT budget annually with your IT partner, not just when something breaks</li>
+    </ul>
+  </div>
+</div>
+
+<!-- CTA -->
+<!-- SOURCES -->
+<div class="chapter" style="background:#ffffff;">
+  <div class="chapter-inner">
+    <div class="chapter-num">Sources</div>
+    <div class="chapter-title">Research &amp; <span>Citations</span></div>
+    <div class="chapter-divider"></div>
+    <p class="body-text">The statistics cited throughout this guide are drawn from the following published research:</p>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:0;margin-top:1rem;">
+      <li style="font-size:0.875rem;line-height:1.7;color:#555;padding:0.875rem 0;border-bottom:1px solid #e2e0dc;"><strong style="color:#1a1a1a;">60% of SMBs close within 6 months of a cyberattack</strong><br />Cybersecurity Ventures, cited by Verizon Business, Preveil (2026), and the National Cyber Security Alliance. Consistent across multiple independent industry reports since 2018.</li>
+      <li style="font-size:0.875rem;line-height:1.7;color:#555;padding:0.875rem 0;border-bottom:1px solid #e2e0dc;"><strong style="color:#1a1a1a;">88% of SMB breaches contain ransomware vs. 39% for large enterprises</strong><br />Verizon Data Breach Investigations Report, 2025. Based on analysis of over 22,000 security incidents and 12,000+ confirmed breaches. Available at verizon.com/business/resources/reports/dbir/</li>
+      <li style="font-size:0.875rem;line-height:1.7;color:#555;padding:0.875rem 0;border-bottom:1px solid #e2e0dc;"><strong style="color:#1a1a1a;">SMB IT spending at 4–6% of annual revenue</strong><br />Gartner IT Key Metrics Data and IT Spending Benchmarks, widely cited across industry research.</li>
+      <li style="font-size:0.875rem;line-height:1.7;color:#555;padding:0.875rem 0;border-bottom:1px solid #e2e0dc;"><strong style="color:#1a1a1a;">Benefits costs at 30% of salary</strong><br />U.S. Bureau of Labor Statistics, Employer Costs for Employee Compensation, 2024. Available at bls.gov.</li>
+      <li style="font-size:0.875rem;line-height:1.7;color:#555;padding:0.875rem 0;"><strong style="color:#1a1a1a;">Hardware refresh lifecycle recommendations</strong><br />ITIC 2024 Hourly Cost of Downtime Survey (itic-corp.com). Workstations: 4–5 years. Servers: 5–7 years. Network equipment: 5–8 years.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="cta-chapter">
+  <div class="cta-inner">
+    <div class="cta-label">Ready to Take the Next Step?</div>
+    <div class="cta-title">Let's Talk About<br />Your IT Environment</div>
+    <p class="cta-body">You've done your homework. Now let's see if Techneaux is the right fit for your business. A free 30-minute consultation, no pressure, no pitch, just an honest conversation about your technology and what you actually need.</p>
+    <a href="https://www.techneaux.com/contact-us" class="cta-btn">Book a Free Consultation</a>
+    <div class="cta-note">No commitment. No sales pressure. Your success is our success.</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="guide-footer">
+  <img src="Techneaux_Logo.png" alt="Techneaux Technology Services" />
+  <span class="guide-footer-text">© Techneaux Technology Services &nbsp;·&nbsp; <a href="https://www.techneaux.com">www.techneaux.com</a> &nbsp;·&nbsp; <a href="tel:8003375313">(800) 337-5313</a> &nbsp;·&nbsp; <a href="mailto:support@techneaux.com">support@techneaux.com</a></span>
+</div>
+
+</body>
+</html>
